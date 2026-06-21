@@ -1,0 +1,611 @@
+{
+  "item": [
+    {
+      "id": "bad0a84a-acd7-472f-a69e-216bce4f3b16",
+      "name": "Instances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e9ecd177-4f66-4683-bc1a-d934302bf83b",
+          "name": "List instances",
+          "request": {
+            "name": "List instances",
+            "description": {
+              "content": "Returns all instances for the authenticated account. Equivalent to User.get_instances() in the SDK and `jl list` in the CLI.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "921c1955-56fa-476d-b455-e63bae1e53d6",
+          "name": "Create an instance",
+          "request": {
+            "name": "Create an instance",
+            "description": {
+              "content": "Launches a new GPU or CPU instance. Equivalent to Instance.create() in the SDK and `jl create` in the CLI. Persistent storage survives pause/resume; billing is per minute of compute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "220c9e05-8ab8-4137-a6e1-66324fc99132",
+          "name": "Get an instance",
+          "request": {
+            "name": "Get an instance",
+            "description": {
+              "content": "Returns details for a single instance. Equivalent to User.get_instance(machine_id) and `jl get <machine_id>`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":machine_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "machine_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "cf26a413-ffe2-40c9-a701-a8a22e5aceb2",
+          "name": "Rename an instance",
+          "request": {
+            "name": "Rename an instance",
+            "description": {
+              "content": "Renames an instance. Equivalent to `jl rename <machine_id> --name`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":machine_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "machine_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "072532b5-5e6e-42ba-a24c-3087c8167dbd",
+          "name": "Destroy an instance",
+          "request": {
+            "name": "Destroy an instance",
+            "description": {
+              "content": "Permanently deletes an instance and all of its data, stopping all billing. Equivalent to instance.destroy() and `jl destroy <machine_id>`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":machine_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "machine_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "72ff5482-f9de-47f2-818d-78c61086f0ea",
+          "name": "Pause an instance",
+          "request": {
+            "name": "Pause an instance",
+            "description": {
+              "content": "Pauses a running instance, stopping compute billing while persistent storage is retained. Equivalent to instance.pause() and `jl pause <machine_id>`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":machine_id",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "machine_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "8aa5c5dc-ae73-4809-8cbb-0325dafa0b84",
+          "name": "Resume an instance",
+          "request": {
+            "name": "Resume an instance",
+            "description": {
+              "content": "Resumes a paused instance, optionally switching GPU type, GPU count, or storage and attaching a filesystem. Equivalent to instance.resume() and `jl resume <machine_id>`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":machine_id",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "machine_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "a01725ed-074a-4d00-9849-0bfb22872af3",
+      "name": "GPU Types",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f5cda284-756d-4fcf-b97a-c9d1bf23848c",
+          "name": "List GPU types",
+          "request": {
+            "name": "List GPU types",
+            "description": {
+              "content": "Lists available GPU types with real-time availability, region, VRAM, RAM, vCPU count, and per-GPU-hour pricing. Equivalent to `jl gpus`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gpus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "d4bd1d81-5371-44e9-98b2-5d770af62868",
+      "name": "Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c461407-b792-41c5-b2a1-9346563d39c5",
+          "name": "List templates",
+          "request": {
+            "name": "List templates",
+            "description": {
+              "content": "Lists available framework templates used to provision instances. Equivalent to User.get_templates() and `jl templates`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "dd953ff5-1997-43ac-90e0-1d76fe771caa",
+      "name": "Filesystems",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c7d31f9-bda9-403f-8f76-20cc77492bdd",
+          "name": "List filesystems",
+          "request": {
+            "name": "List filesystems",
+            "description": {
+              "content": "Lists persistent storage volumes. Equivalent to FileSystem.list() and `jl filesystem list`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filesystems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "b7a74c5e-5760-43d5-a6e5-f7696b57d77a",
+          "name": "Create a filesystem",
+          "request": {
+            "name": "Create a filesystem",
+            "description": {
+              "content": "Creates a new persistent storage volume. Equivalent to FileSystem.create() and `jl filesystem create --storage`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filesystems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "01398124-48f1-4554-915c-fd7b92bbc94f",
+          "name": "Delete a filesystem",
+          "request": {
+            "name": "Delete a filesystem",
+            "description": {
+              "content": "Deletes a persistent storage volume. Equivalent to FileSystem.delete() and `jl filesystem remove <fs_id>`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filesystems",
+                ":fs_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "fs_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "218ce0f0-ea68-4556-84d4-447c66ebefc9",
+      "name": "Account",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6dfe62f-15fe-4afb-9b9b-f8644eed864e",
+          "name": "Get account balance",
+          "request": {
+            "name": "Get account balance",
+            "description": {
+              "content": "Returns the authenticated account's wallet balance. Equivalent to User.get_balance() and `jl status`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.jarvislabs.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiToken}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c96d4d3d-5c42-458e-85a7-9b1d6f9a31fa",
+    "name": "JarvisLabs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST modeling of the JarvisLabs.ai GPU cloud instance-management surface that is wrapped by the jarvislabs Python SDK, the jl CLI, and the legacy jlclient library. JarvisLabs does not publish raw REST endpoint paths in its public documentation; the operations, parameters, GPU types, templates, and l\n\nContact Support:\n Name: JarvisLabs Support\n URL: https://docs.jarvislabs.ai",
+      "type": "text/plain"
+    }
+  }
+}

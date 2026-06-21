@@ -1,0 +1,95 @@
+aid: jarvislabs
+name: JarvisLabs
+review:
+  question: Does JarvisLabs expose a documented public WebSocket or streaming API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. JarvisLabs does not document any
+    WebSocket (ws:// / wss://) or HTTP Server-Sent Events (SSE) streaming
+    surface for its instance-management API. Log and command streaming
+    (jl exec, jl run logs --follow, jl ssh) is delivered over SSH / the CLI
+    transport rather than a documented public event-streaming API, so there
+    is no event-driven surface in scope for AsyncAPI modeling.
+findings:
+  summary: |
+    JarvisLabs.ai is a GPU cloud whose API is not published as raw REST
+    endpoint paths. Access is via the jarvislabs Python SDK, the jl CLI, and
+    the legacy (deprecated) jlclient library, all of which wrap the platform's
+    instance-management API. Authentication is an API token generated at
+    jarvislabs.ai/settings/api-keys (set as jarvisclient.token in the SDK or
+    via `jl setup` in the CLI). Documented operations cover the full GPU/CPU
+    instance lifecycle (create, list, get, pause, resume, rename, destroy),
+    GPU type discovery with availability and pricing, framework templates,
+    persistent filesystems, SSH keys, startup scripts, and managed runs. No
+    public WebSocket or SSE event-streaming API is documented; interactive and
+    log streaming happens over SSH / the CLI transport. The OpenAPI artifact in
+    this repo models the documented SDK/CLI behavior conservatively under a
+    versioned REST base, since exact published routes are not disclosed.
+  transports:
+    - protocol: SDK
+      scheme: python
+      note: jarvislabs Python SDK (and legacy jlclient) wrap the instance-management API.
+      documented: true
+    - protocol: CLI
+      scheme: jl
+      note: jl command-line interface for create/pause/resume/destroy/list/gpus/etc.
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.jarvislabs.ai/v1
+      documented: false
+      note: A REST surface is wrapped by the SDK/CLI but raw endpoint paths are not published; modeled conservatively in openapi/jarvislabs-openapi.yml.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented for any JarvisLabs product surface as of the review date.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No HTTP Server-Sent Events streaming API is documented; log/command streaming is over SSH / the CLI.
+  operationsConfirmedSdk:
+    - Instance.create() / jl create
+    - instance.pause() / jl pause <machine_id>
+    - instance.resume() / jl resume <machine_id>
+    - instance.destroy() / jl destroy <machine_id>
+    - User.get_instances() / jl list
+    - User.get_instance(machine_id) / jl get <machine_id>
+    - jl rename <machine_id> --name
+    - User.get_templates() / jl templates
+    - User.get_balance() / jl status
+    - FileSystem.create() / FileSystem.list() / FileSystem.delete() / jl filesystem
+    - jl gpus (GPU types, availability, region, VRAM, pricing)
+    - jl run / jl run logs / jl run status / jl run stop (managed runs)
+sources:
+  - url: https://docs.jarvislabs.ai/
+    type: Documentation
+    note: Quick start; instance lifecycle, templates, regions, managed runs.
+  - url: https://docs.jarvislabs.ai/api
+    type: APIReference
+    note: Legacy jlclient SDK reference (deprecated); API-token auth, Instance/User/FileSystem methods. No raw REST routes published.
+  - url: https://docs.jarvislabs.ai/cli
+    type: Documentation
+    note: jl CLI reference; full command set. No REST base URL disclosed.
+  - url: https://jarvislabs.ai/sdk
+    type: Documentation
+    note: New jarvislabs Python SDK and jl CLI; instance management and agent integration.
+  - url: https://jarvislabs.ai/pricing
+    type: Documentation
+    note: Per-GPU-hour pricing, CPU VM pricing, storage, egress.
+  - url: https://github.com/jarvislabsai/JLClient
+    type: GitHub
+    note: Legacy jlclient source; GPU types, parameters, token auth.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No event-driven (WebSocket / SSE) protocol surface is documented, so no
+    AsyncAPI document was authored. The repo models the documented
+    instance-management surface as OpenAPI (conservatively, since raw routes
+    are not published) and records the SDK/CLI as the authoritative access path.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

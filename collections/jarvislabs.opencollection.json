@@ -1,0 +1,220 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JarvisLabs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{apiToken}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/instances"
+          },
+          "docs": "Returns all instances for the authenticated account. Equivalent to User.get_instances() in the SDK and `jl list` in the CLI."
+        },
+        {
+          "info": {
+            "name": "Create an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jarvislabs.ai/v1/instances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launches a new GPU or CPU instance. Equivalent to Instance.create() in the SDK and `jl create` in the CLI. Persistent storage survives pause/resume; billing is per minute of compute."
+        },
+        {
+          "info": {
+            "name": "Get an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/instances/{machine_id}"
+          },
+          "docs": "Returns details for a single instance. Equivalent to User.get_instance(machine_id) and `jl get <machine_id>`."
+        },
+        {
+          "info": {
+            "name": "Rename an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.jarvislabs.ai/v1/instances/{machine_id}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Renames an instance. Equivalent to `jl rename <machine_id> --name`."
+        },
+        {
+          "info": {
+            "name": "Destroy an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jarvislabs.ai/v1/instances/{machine_id}"
+          },
+          "docs": "Permanently deletes an instance and all of its data, stopping all billing. Equivalent to instance.destroy() and `jl destroy <machine_id>`."
+        },
+        {
+          "info": {
+            "name": "Pause an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jarvislabs.ai/v1/instances/{machine_id}/pause",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Pauses a running instance, stopping compute billing while persistent storage is retained. Equivalent to instance.pause() and `jl pause <machine_id>`."
+        },
+        {
+          "info": {
+            "name": "Resume an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jarvislabs.ai/v1/instances/{machine_id}/resume",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resumes a paused instance, optionally switching GPU type, GPU count, or storage and attaching a filesystem. Equivalent to instance.resume() and `jl resume <machine_id>`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "GPU Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List GPU types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/gpus"
+          },
+          "docs": "Lists available GPU types with real-time availability, region, VRAM, RAM, vCPU count, and per-GPU-hour pricing. Equivalent to `jl gpus`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/templates"
+          },
+          "docs": "Lists available framework templates used to provision instances. Equivalent to User.get_templates() and `jl templates`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Filesystems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List filesystems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/filesystems"
+          },
+          "docs": "Lists persistent storage volumes. Equivalent to FileSystem.list() and `jl filesystem list`."
+        },
+        {
+          "info": {
+            "name": "Create a filesystem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jarvislabs.ai/v1/filesystems",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new persistent storage volume. Equivalent to FileSystem.create() and `jl filesystem create --storage`."
+        },
+        {
+          "info": {
+            "name": "Delete a filesystem",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jarvislabs.ai/v1/filesystems/{fs_id}"
+          },
+          "docs": "Deletes a persistent storage volume. Equivalent to FileSystem.delete() and `jl filesystem remove <fs_id>`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/account/balance"
+          },
+          "docs": "Returns the authenticated account's wallet balance. Equivalent to User.get_balance() and `jl status`."
+        }
+      ]
+    }
+  ]
+}

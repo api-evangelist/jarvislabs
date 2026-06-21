@@ -1,0 +1,63 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: JarvisLabs
+providerId: jarvislabs
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- GPU
+- Cloud
+- Infrastructure
+- Compute
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  JarvisLabs does not publish explicit numeric request rate limits for its
+  instance-management API in public documentation. In practice, capacity is
+  governed by real-time GPU availability (surfaced via `jl gpus`), per-account
+  concurrent instance and GPU-count limits (up to 8 GPUs per instance), and
+  wallet balance / grants rather than by request-per-minute throttling. Specific
+  per-account values are not reconciled in this artifact.
+notes: >-
+  Verify any per-account concurrency caps, GPU quotas, and availability
+  constraints in the JarvisLabs dashboard or with support on reconciliation;
+  limits depend on account standing, region, and live capacity.
+sources:
+- https://docs.jarvislabs.ai/
+- https://docs.jarvislabs.ai/cli
+- https://jarvislabs.ai/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Concurrent Instances
+  scope: account
+  metric: instances
+  limit: see provider dashboard
+  notes: Number of simultaneously running instances per account; not publicly numbered.
+- name: GPUs Per Instance
+  scope: instance
+  metric: gpus
+  limit: 8
+  notes: Up to 8 GPUs can be attached to a single instance / deployment.
+- name: GPU Availability
+  scope: region
+  metric: gpus
+  limit: real-time
+  notes: Launch success depends on live GPU availability per type and region (jl gpus).
+- name: Wallet Balance
+  scope: account
+  metric: balance
+  limit: prepaid
+  notes: Usage is gated by prepaid wallet balance and any account grants.
+policies:
+- name: Capacity-Gated Provisioning
+  description: Instance creation is constrained by real-time GPU availability per type and region rather than fixed request quotas.
+- name: Backoff Strategy
+  description: Clients should implement retry with backoff on capacity errors and honor any Retry-After headers.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
