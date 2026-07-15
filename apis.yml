@@ -137,6 +137,8 @@ apis:
     filesystems, SSH keys, startup scripts, and managed runs, with built-in support
     for AI coding agents like Claude Code, Cursor, and Codex.
 common:
+- type: AgenticAccess
+  url: agentic-access/jarvislabs-agentic-access.yml
 - type: DomainSecurity
   url: security/jarvislabs-domain-security.yml
 - type: Authentication
