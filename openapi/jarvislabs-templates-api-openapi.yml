@@ -1,0 +1,72 @@
+openapi: 3.0.1
+info:
+  title: JarvisLabs Account Templates API
+  description: REST modeling of the JarvisLabs.ai GPU cloud instance-management surface that is wrapped by the jarvislabs Python SDK, the jl CLI, and the legacy jlclient library. JarvisLabs does not publish raw REST endpoint paths in its public documentation; the operations, parameters, GPU types, templates, and lifecycle behavior modeled here are taken directly from the documented SDK methods (Instance.create, instance.pause, instance.resume, instance.destroy, User.get_instances, User.get_instance, User.get_templates, User.get_balance, FileSystem.create/list/delete) and the equivalent jl CLI commands (jl create, list, get, pause, resume, rename, destroy, gpus, templates, status, filesystem). Paths are modeled conservatively under a versioned base and should be treated as illustrative of the documented behavior rather than as officially published routes.
+  termsOfService: https://jarvislabs.ai/terms
+  contact:
+    name: JarvisLabs Support
+    url: https://docs.jarvislabs.ai
+  version: '1.0'
+servers:
+- url: https://api.jarvislabs.ai/v1
+  description: JarvisLabs API (base modeled; authoritative access is via the jarvislabs SDK / jl CLI)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Templates
+  description: Framework templates available for provisioning.
+paths:
+  /templates:
+    get:
+      operationId: listTemplates
+      tags:
+      - Templates
+      summary: List templates
+      description: Lists available framework templates used to provision instances. Equivalent to User.get_templates() and `jl templates`.
+      responses:
+        '200':
+          description: A list of templates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+        code:
+          type: string
+          description: Machine-readable error code.
+    Template:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Template name (e.g. pytorch, tensorflow, jax, vm).
+        framework:
+          type: string
+        description:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API token generated at https://jarvislabs.ai/settings/api-keys. In the SDK this is set via jarvisclient.token; the CLI stores it via `jl setup`.

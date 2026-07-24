@@ -1,0 +1,360 @@
+openapi: 3.0.1
+info:
+  title: JarvisLabs Account Instances API
+  description: REST modeling of the JarvisLabs.ai GPU cloud instance-management surface that is wrapped by the jarvislabs Python SDK, the jl CLI, and the legacy jlclient library. JarvisLabs does not publish raw REST endpoint paths in its public documentation; the operations, parameters, GPU types, templates, and lifecycle behavior modeled here are taken directly from the documented SDK methods (Instance.create, instance.pause, instance.resume, instance.destroy, User.get_instances, User.get_instance, User.get_templates, User.get_balance, FileSystem.create/list/delete) and the equivalent jl CLI commands (jl create, list, get, pause, resume, rename, destroy, gpus, templates, status, filesystem). Paths are modeled conservatively under a versioned base and should be treated as illustrative of the documented behavior rather than as officially published routes.
+  termsOfService: https://jarvislabs.ai/terms
+  contact:
+    name: JarvisLabs Support
+    url: https://docs.jarvislabs.ai
+  version: '1.0'
+servers:
+- url: https://api.jarvislabs.ai/v1
+  description: JarvisLabs API (base modeled; authoritative access is via the jarvislabs SDK / jl CLI)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Instances
+  description: GPU and CPU instance lifecycle.
+paths:
+  /instances:
+    get:
+      operationId: listInstances
+      tags:
+      - Instances
+      summary: List instances
+      description: Returns all instances for the authenticated account. Equivalent to User.get_instances() in the SDK and `jl list` in the CLI.
+      responses:
+        '200':
+          description: A list of instances.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Instance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createInstance
+      tags:
+      - Instances
+      summary: Create an instance
+      description: Launches a new GPU or CPU instance. Equivalent to Instance.create() in the SDK and `jl create` in the CLI. Persistent storage survives pause/resume; billing is per minute of compute.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInstanceRequest'
+      responses:
+        '201':
+          description: Instance created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /instances/{machine_id}:
+    parameters:
+    - $ref: '#/components/parameters/MachineId'
+    get:
+      operationId: getInstance
+      tags:
+      - Instances
+      summary: Get an instance
+      description: Returns details for a single instance. Equivalent to User.get_instance(machine_id) and `jl get <machine_id>`.
+      responses:
+        '200':
+          description: Instance details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: renameInstance
+      tags:
+      - Instances
+      summary: Rename an instance
+      description: Renames an instance. Equivalent to `jl rename <machine_id> --name`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  description: New display name for the instance.
+      responses:
+        '200':
+          description: Instance updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: destroyInstance
+      tags:
+      - Instances
+      summary: Destroy an instance
+      description: Permanently deletes an instance and all of its data, stopping all billing. Equivalent to instance.destroy() and `jl destroy <machine_id>`.
+      responses:
+        '200':
+          description: Instance destroyed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /instances/{machine_id}/pause:
+    parameters:
+    - $ref: '#/components/parameters/MachineId'
+    post:
+      operationId: pauseInstance
+      tags:
+      - Instances
+      summary: Pause an instance
+      description: Pauses a running instance, stopping compute billing while persistent storage is retained. Equivalent to instance.pause() and `jl pause <machine_id>`.
+      responses:
+        '200':
+          description: Instance paused.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /instances/{machine_id}/resume:
+    parameters:
+    - $ref: '#/components/parameters/MachineId'
+    post:
+      operationId: resumeInstance
+      tags:
+      - Instances
+      summary: Resume an instance
+      description: Resumes a paused instance, optionally switching GPU type, GPU count, or storage and attaching a filesystem. Equivalent to instance.resume() and `jl resume <machine_id>`.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResumeInstanceRequest'
+      responses:
+        '200':
+          description: Instance resumed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    ActionResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    CreateInstanceRequest:
+      type: object
+      required:
+      - instance_type
+      properties:
+        instance_type:
+          type: string
+          description: Type of instance to launch.
+          enum:
+          - GPU
+          - CPU
+          default: GPU
+        gpu_type:
+          type: string
+          description: GPU model to provision (ignored for CPU instances).
+          enum:
+          - H100
+          - H200
+          - A100
+          - A100-80GB
+          - RTX6000Ada
+          - A6000
+          - A5000
+          - RTX5000
+          - L4
+          - A30
+        num_gpus:
+          type: integer
+          description: Number of GPUs (1-8).
+          minimum: 1
+          maximum: 8
+          default: 1
+        num_cpus:
+          type: integer
+          description: Number of vCPUs for CPU instances (1-8).
+          minimum: 1
+          maximum: 8
+        storage:
+          type: integer
+          description: Persistent storage in GB (e.g. 20-2000).
+          default: 20
+        name:
+          type: string
+          description: Display name for the instance.
+        duration:
+          type: string
+          description: Reservation duration.
+          enum:
+          - hour
+          - week
+          - month
+          default: hour
+        template:
+          type: string
+          description: Framework template to provision (e.g. pytorch, tensorflow, jax, vm).
+          default: pytorch
+        script_id:
+          type: string
+          description: Identifier of a startup script to run on launch.
+        http_ports:
+          type: string
+          description: Comma-separated HTTP ports to expose (e.g. for Gradio or FastAPI).
+        fs_id:
+          type: string
+          description: Identifier of a persistent filesystem to attach.
+        region:
+          type: string
+          description: Region to launch in (e.g. india-01, europe-01).
+        is_reserved:
+          type: boolean
+          description: Whether to launch as a reserved instance.
+          default: false
+    Instance:
+      type: object
+      properties:
+        machine_id:
+          type: string
+          description: Unique instance identifier.
+        name:
+          type: string
+          description: Display name.
+        status:
+          type: string
+          description: Lifecycle status of the instance.
+          enum:
+          - Running
+          - Paused
+          - Pending
+          - Destroyed
+        instance_type:
+          type: string
+          enum:
+          - GPU
+          - CPU
+        gpu_type:
+          type: string
+          description: GPU model in use.
+        num_gpus:
+          type: integer
+        num_cpus:
+          type: integer
+        storage:
+          type: integer
+          description: Persistent storage in GB.
+        template:
+          type: string
+        region:
+          type: string
+        ssh_str:
+          type: string
+          description: SSH connection string for the instance.
+        url:
+          type: string
+          description: Public URL to the instance dashboard or exposed app.
+        cost_per_hour:
+          type: number
+          format: float
+          description: Per-hour cost in USD for the active configuration.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+        code:
+          type: string
+          description: Machine-readable error code.
+    ResumeInstanceRequest:
+      type: object
+      properties:
+        gpu_type:
+          type: string
+          description: GPU model to switch to on resume.
+        num_gpus:
+          type: integer
+          description: Number of GPUs to resume with (1-8).
+          minimum: 1
+          maximum: 8
+        num_cpus:
+          type: integer
+          description: Number of vCPUs to resume with.
+        storage:
+          type: integer
+          description: Storage in GB to resume with.
+        fs_id:
+          type: string
+          description: Identifier of a filesystem to attach on resume.
+  parameters:
+    MachineId:
+      name: machine_id
+      in: path
+      required: true
+      description: The instance (machine) identifier.
+      schema:
+        type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API token generated at https://jarvislabs.ai/settings/api-keys. In the SDK this is set via jarvisclient.token; the CLI stores it via `jl setup`.
