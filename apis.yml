@@ -8,7 +8,20 @@ description: JarvisLabs.ai is a GPU cloud for AI development that lets you launc
   for the full instance lifecycle - create, pause, resume, and destroy - plus GPU type
   discovery, framework templates, persistent filesystems, and managed runs for
   training and inference workloads, billed per minute of compute.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/jarvislabs.png
 tags:
 - AI
 - GPU
@@ -19,123 +32,146 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: jarvislabs:jarvislabs-instances-api
-  name: JarvisLabs Instances API
-  tags:
-  - Instances
-  - GPU
-  - Lifecycle
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: jarvislabs:jarvislabs-account-api
+  name: JarvisLabs Account API
+  description: Account balance and status.
   humanURL: https://docs.jarvislabs.ai/api
   baseURL: https://api.jarvislabs.ai/v1
+  tags:
+  - Account
   properties:
-  - url: https://docs.jarvislabs.ai/api
-    type: Documentation
-  - url: https://docs.jarvislabs.ai/cli
-    type: APIReference
-  - url: openapi/jarvislabs-openapi.yml
-    type: OpenAPI
-  - url: collections/jarvislabs.postman_collection.json
-    type: PostmanCollection
-  - url: collections/jarvislabs.opencollection.json
-    type: OpenCollection
-  - url: https://github.com/jarvislabsai/JLClient
-    type: GitHub
-  description: On-demand GPU and CPU instance lifecycle - create, list, get, pause,
-    resume, rename, and destroy instances - exposed through the jarvislabs Python SDK
-    and jl CLI, with per-minute billing and persistent storage that survives pause
-    and resume.
+  - type: OpenAPI
+    url: openapi/jarvislabs-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/api
+  - type: APIReference
+    url: https://docs.jarvislabs.ai/cli
+  - type: PostmanCollection
+    url: collections/jarvislabs.postman_collection.json
+  - type: OpenCollection
+    url: collections/jarvislabs.opencollection.json
+  - type: GitHub
+    url: https://github.com/jarvislabsai/JLClient
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/cli
+  - type: APIReference
+    url: https://docs.jarvislabs.ai/api
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/
+  - type: Documentation
+    url: https://jarvislabs.ai/sdk
+- aid: jarvislabs:jarvislabs-filesystems-api
+  name: JarvisLabs Filesystems API
+  description: Persistent storage volumes.
+  humanURL: https://docs.jarvislabs.ai/api
+  baseURL: https://api.jarvislabs.ai/v1
+  tags:
+  - Filesystems
+  properties:
+  - type: OpenAPI
+    url: openapi/jarvislabs-filesystems-api-openapi.yml
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/api
+  - type: APIReference
+    url: https://docs.jarvislabs.ai/cli
+  - type: PostmanCollection
+    url: collections/jarvislabs.postman_collection.json
+  - type: OpenCollection
+    url: collections/jarvislabs.opencollection.json
+  - type: GitHub
+    url: https://github.com/jarvislabsai/JLClient
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/cli
+  - type: APIReference
+    url: https://docs.jarvislabs.ai/api
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/
+  - type: Documentation
+    url: https://jarvislabs.ai/sdk
 - aid: jarvislabs:jarvislabs-gpu-types-api
   name: JarvisLabs GPU Types API
-  tags:
-  - GPU Types
-  - Availability
-  - Catalog
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://jarvislabs.ai/pricing
-  baseURL: https://api.jarvislabs.ai/v1
-  properties:
-  - url: https://docs.jarvislabs.ai/cli
-    type: Documentation
-  - url: https://docs.jarvislabs.ai/api
-    type: APIReference
-  - url: openapi/jarvislabs-openapi.yml
-    type: OpenAPI
-  - url: collections/jarvislabs.postman_collection.json
-    type: PostmanCollection
-  - url: collections/jarvislabs.opencollection.json
-    type: OpenCollection
-  description: Lists available GPU types with real-time availability, region, VRAM,
-    RAM, vCPU, and per-GPU-hour pricing (surfaced via the jl gpus command), used to
-    pick hardware before launching an instance.
-- aid: jarvislabs:jarvislabs-templates-api
-  name: JarvisLabs Templates API
-  tags:
-  - Templates
-  - Frameworks
-  - Images
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: GPU type discovery, availability, and pricing.
   humanURL: https://docs.jarvislabs.ai/api
   baseURL: https://api.jarvislabs.ai/v1
-  properties:
-  - url: https://docs.jarvislabs.ai/cli
-    type: Documentation
-  - url: https://docs.jarvislabs.ai/api
-    type: APIReference
-  - url: openapi/jarvislabs-openapi.yml
-    type: OpenAPI
-  - url: collections/jarvislabs.postman_collection.json
-    type: PostmanCollection
-  - url: collections/jarvislabs.opencollection.json
-    type: OpenCollection
-  description: Lists available framework templates (PyTorch, TensorFlow, JAX, VM)
-    and persistent filesystems used to provision instances with a ready environment.
-- aid: jarvislabs:jarvislabs-inference-deploy-api
-  name: JarvisLabs Inference & Deploy API
   tags:
-  - Inference
-  - Deploy
-  - Managed Runs
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://jarvislabs.ai/sdk
-  baseURL: https://api.jarvislabs.ai/v1
+  - GPU Types
   properties:
-  - url: https://docs.jarvislabs.ai/
-    type: Documentation
-  - url: https://docs.jarvislabs.ai/cli
-    type: APIReference
-  - url: openapi/jarvislabs-openapi.yml
-    type: OpenAPI
-  - url: collections/jarvislabs.postman_collection.json
-    type: PostmanCollection
-  - url: collections/jarvislabs.opencollection.json
-    type: OpenCollection
-  description: Managed runs that upload code, build a virtual environment, install
-    dependencies, run a training or inference script on a fresh or existing instance,
-    and auto-pause on completion - plus HTTP port exposure for serving Gradio or
-    FastAPI inference apps.
-- aid: jarvislabs:jarvislabs-sdk
-  name: JarvisLabs SDK & CLI
+  - type: OpenAPI
+    url: openapi/jarvislabs-gpu-types-api-openapi.yml
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/api
+  - type: APIReference
+    url: https://docs.jarvislabs.ai/cli
+  - type: PostmanCollection
+    url: collections/jarvislabs.postman_collection.json
+  - type: OpenCollection
+    url: collections/jarvislabs.opencollection.json
+  - type: GitHub
+    url: https://github.com/jarvislabsai/JLClient
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/cli
+  - type: APIReference
+    url: https://docs.jarvislabs.ai/api
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/
+  - type: Documentation
+    url: https://jarvislabs.ai/sdk
+- aid: jarvislabs:jarvislabs-instances-api
+  name: JarvisLabs Instances API
+  description: GPU and CPU instance lifecycle.
+  humanURL: https://docs.jarvislabs.ai/api
+  baseURL: https://api.jarvislabs.ai/v1
   tags:
-  - SDK
-  - CLI
-  - Python
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://jarvislabs.ai/sdk
-  baseURL: https://api.jarvislabs.ai/v1
+  - Instances
   properties:
-  - url: https://jarvislabs.ai/sdk
-    type: Documentation
-  - url: https://docs.jarvislabs.ai/cli
-    type: APIReference
-  - url: https://github.com/jarvislabsai/JLClient
-    type: GitHub
-  - url: openapi/jarvislabs-openapi.yml
-    type: OpenAPI
-  description: The jarvislabs Python SDK and jl CLI (and the legacy jlclient library)
-    wrap the JarvisLabs API for instance management, GPU discovery, templates,
-    filesystems, SSH keys, startup scripts, and managed runs, with built-in support
-    for AI coding agents like Claude Code, Cursor, and Codex.
+  - type: OpenAPI
+    url: openapi/jarvislabs-instances-api-openapi.yml
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/api
+  - type: APIReference
+    url: https://docs.jarvislabs.ai/cli
+  - type: PostmanCollection
+    url: collections/jarvislabs.postman_collection.json
+  - type: OpenCollection
+    url: collections/jarvislabs.opencollection.json
+  - type: GitHub
+    url: https://github.com/jarvislabsai/JLClient
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/cli
+  - type: APIReference
+    url: https://docs.jarvislabs.ai/api
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/
+  - type: Documentation
+    url: https://jarvislabs.ai/sdk
+- aid: jarvislabs:jarvislabs-templates-api
+  name: JarvisLabs Templates API
+  description: Framework templates available for provisioning.
+  humanURL: https://docs.jarvislabs.ai/api
+  baseURL: https://api.jarvislabs.ai/v1
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/jarvislabs-templates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/api
+  - type: APIReference
+    url: https://docs.jarvislabs.ai/cli
+  - type: PostmanCollection
+    url: collections/jarvislabs.postman_collection.json
+  - type: OpenCollection
+    url: collections/jarvislabs.opencollection.json
+  - type: GitHub
+    url: https://github.com/jarvislabsai/JLClient
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/cli
+  - type: APIReference
+    url: https://docs.jarvislabs.ai/api
+  - type: Documentation
+    url: https://docs.jarvislabs.ai/
+  - type: Documentation
+    url: https://jarvislabs.ai/sdk
 common:
 - type: AgenticAccess
   url: agentic-access/jarvislabs-agentic-access.yml
