@@ -1,0 +1,22 @@
+{
+  "provider": "jarvislabs",
+  "sources": [
+    "jarvislabs-account-api-openapi.yml",
+    "jarvislabs-filesystems-api-openapi.yml",
+    "jarvislabs-gpu-types-api-openapi.yml",
+    "jarvislabs-instances-api-openapi.yml",
+    "jarvislabs-templates-api-openapi.yml"
+  ],
+  "outputs": [
+    "jarvislabs-account-api-openapi.yml",
+    "jarvislabs-filesystems-api-openapi.yml",
+    "jarvislabs-gpu-types-api-openapi.yml",
+    "jarvislabs-instances-api-openapi.yml",
+    "jarvislabs-templates-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
