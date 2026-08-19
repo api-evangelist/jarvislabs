@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "80f18eeb-0485-4d3f-ad58-680d2073cea4",
+      "name": "Templates",
+      "description": {
+        "content": "Framework templates available for provisioning.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6f53cd1-862c-4df4-9863-00c69315de81",
+          "name": "List templates",
+          "request": {
+            "name": "List templates",
+            "description": {
+              "content": "Lists available framework templates used to provision instances. Equivalent to User.get_templates() and `jl templates`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3dea383b-0486-45b7-a055-3613356f9387",
+              "name": "A list of templates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"framework\": \"string\",\n    \"description\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"framework\": \"string\",\n    \"description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b91dbb4d-1daf-433b-be44-963bcdbd0528",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.jarvislabs.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "11de3624-77bb-41de-9400-26870fd478bb",
+    "name": "JarvisLabs Account Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST modeling of the JarvisLabs.ai GPU cloud instance-management surface that is wrapped by the jarvislabs Python SDK, the jl CLI, and the legacy jlclient library. JarvisLabs does not publish raw REST endpoint paths in its public documentation; the operations, parameters, GPU types, templates, and lifecycle behavior modeled here are taken directly from the documented SDK methods (Instance.create, instance.pause, instance.resume, instance.destroy, User.get_instances, User.get_instance, User.get_templates, User.get_balance, FileSystem.create/list/delete) and the equivalent jl CLI commands (jl create, list, get, pause, resume, rename, destroy, gpus, templates, status, filesystem). Paths are modeled conservatively under a versioned base and should be treated as illustrative of the documented behavior rather than as officially published routes.\n\nContact Support:\n Name: JarvisLabs Support",
+      "type": "text/plain"
+    }
+  }
+}

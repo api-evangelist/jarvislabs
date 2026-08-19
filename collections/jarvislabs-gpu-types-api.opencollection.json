@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JarvisLabs Account GPU Types API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GPU Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List GPU types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/gpus"
+          },
+          "docs": "Lists available GPU types with real-time availability, region, VRAM, RAM, vCPU count, and per-GPU-hour pricing. Equivalent to `jl gpus`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JarvisLabs Account Instances API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/instances"
+          },
+          "docs": "Returns all instances for the authenticated account. Equivalent to User.get_instances() in the SDK and `jl list` in the CLI."
+        },
+        {
+          "info": {
+            "name": "Create an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jarvislabs.ai/v1/instances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launches a new GPU or CPU instance. Equivalent to Instance.create() in the SDK and `jl create` in the CLI. Persistent storage survives pause/resume; billing is per minute of compute."
+        },
+        {
+          "info": {
+            "name": "Get an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/instances/:machine_id",
+            "params": [
+              {
+                "name": "machine_id",
+                "value": "",
+                "type": "path",
+                "description": "The instance (machine) identifier."
+              }
+            ]
+          },
+          "docs": "Returns details for a single instance. Equivalent to User.get_instance(machine_id) and `jl get <machine_id>`."
+        },
+        {
+          "info": {
+            "name": "Rename an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.jarvislabs.ai/v1/instances/:machine_id",
+            "params": [
+              {
+                "name": "machine_id",
+                "value": "",
+                "type": "path",
+                "description": "The instance (machine) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Renames an instance. Equivalent to `jl rename <machine_id> --name`."
+        },
+        {
+          "info": {
+            "name": "Destroy an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jarvislabs.ai/v1/instances/:machine_id",
+            "params": [
+              {
+                "name": "machine_id",
+                "value": "",
+                "type": "path",
+                "description": "The instance (machine) identifier."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an instance and all of its data, stopping all billing. Equivalent to instance.destroy() and `jl destroy <machine_id>`."
+        },
+        {
+          "info": {
+            "name": "Pause an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jarvislabs.ai/v1/instances/:machine_id/pause",
+            "params": [
+              {
+                "name": "machine_id",
+                "value": "",
+                "type": "path",
+                "description": "The instance (machine) identifier."
+              }
+            ]
+          },
+          "docs": "Pauses a running instance, stopping compute billing while persistent storage is retained. Equivalent to instance.pause() and `jl pause <machine_id>`."
+        },
+        {
+          "info": {
+            "name": "Resume an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jarvislabs.ai/v1/instances/:machine_id/resume",
+            "params": [
+              {
+                "name": "machine_id",
+                "value": "",
+                "type": "path",
+                "description": "The instance (machine) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resumes a paused instance, optionally switching GPU type, GPU count, or storage and attaching a filesystem. Equivalent to instance.resume() and `jl resume <machine_id>`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

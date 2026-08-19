@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JarvisLabs Account API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/account/balance"
+          },
+          "docs": "Returns the authenticated account's wallet balance. Equivalent to User.get_balance() and `jl status`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

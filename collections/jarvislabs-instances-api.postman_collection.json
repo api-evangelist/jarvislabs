@@ -1,0 +1,1453 @@
+{
+  "item": [
+    {
+      "id": "fda2ffe0-697b-4319-b861-c4a9fd5108f5",
+      "name": "Instances",
+      "description": {
+        "content": "GPU and CPU instance lifecycle.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30199c89-4880-466b-927e-46968e5d7811",
+          "name": "List instances",
+          "request": {
+            "name": "List instances",
+            "description": {
+              "content": "Returns all instances for the authenticated account. Equivalent to User.get_instances() in the SDK and `jl list` in the CLI.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ce4f0fa-1e5e-4129-bbd9-de97cf96d7c7",
+              "name": "A list of instances.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"machine_id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"Paused\",\n    \"instance_type\": \"GPU\",\n    \"gpu_type\": \"string\",\n    \"num_gpus\": 4630,\n    \"num_cpus\": 999,\n    \"storage\": 1073,\n    \"template\": \"string\",\n    \"region\": \"string\",\n    \"ssh_str\": \"string\",\n    \"url\": \"string\",\n    \"cost_per_hour\": 3984.195195968544\n  },\n  {\n    \"machine_id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"Paused\",\n    \"instance_type\": \"CPU\",\n    \"gpu_type\": \"string\",\n    \"num_gpus\": 582,\n    \"num_cpus\": 1528,\n    \"storage\": 1997,\n    \"template\": \"string\",\n    \"region\": \"string\",\n    \"ssh_str\": \"string\",\n    \"url\": \"string\",\n    \"cost_per_hour\": 2451.0009787988442\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad7e3789-d548-462b-9924-66d9612bcce1",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb544994-54a5-45e5-99c1-db638865127b",
+          "name": "Create an instance",
+          "request": {
+            "name": "Create an instance",
+            "description": {
+              "content": "Launches a new GPU or CPU instance. Equivalent to Instance.create() in the SDK and `jl create` in the CLI. Persistent storage survives pause/resume; billing is per minute of compute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instance_type\": \"GPU\",\n  \"gpu_type\": \"<string>\",\n  \"num_gpus\": 1,\n  \"num_cpus\": \"<integer>\",\n  \"storage\": 20,\n  \"name\": \"<string>\",\n  \"duration\": \"hour\",\n  \"template\": \"pytorch\",\n  \"script_id\": \"<string>\",\n  \"http_ports\": \"<string>\",\n  \"fs_id\": \"<string>\",\n  \"region\": \"<string>\",\n  \"is_reserved\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3163033f-6a7d-4f80-9ca1-83fc41b3a460",
+              "name": "Instance created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instance_type\": \"GPU\",\n  \"gpu_type\": \"<string>\",\n  \"num_gpus\": 1,\n  \"num_cpus\": \"<integer>\",\n  \"storage\": 20,\n  \"name\": \"<string>\",\n  \"duration\": \"hour\",\n  \"template\": \"pytorch\",\n  \"script_id\": \"<string>\",\n  \"http_ports\": \"<string>\",\n  \"fs_id\": \"<string>\",\n  \"region\": \"<string>\",\n  \"is_reserved\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"machine_id\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"Paused\",\n  \"instance_type\": \"CPU\",\n  \"gpu_type\": \"string\",\n  \"num_gpus\": 6796,\n  \"num_cpus\": 9700,\n  \"storage\": 3486,\n  \"template\": \"string\",\n  \"region\": \"string\",\n  \"ssh_str\": \"string\",\n  \"url\": \"string\",\n  \"cost_per_hour\": 9913.183470304277\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd1350b7-509f-4626-90aa-e1bf8572afe0",
+              "name": "The request was malformed or missing required fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instance_type\": \"GPU\",\n  \"gpu_type\": \"<string>\",\n  \"num_gpus\": 1,\n  \"num_cpus\": \"<integer>\",\n  \"storage\": 20,\n  \"name\": \"<string>\",\n  \"duration\": \"hour\",\n  \"template\": \"pytorch\",\n  \"script_id\": \"<string>\",\n  \"http_ports\": \"<string>\",\n  \"fs_id\": \"<string>\",\n  \"region\": \"<string>\",\n  \"is_reserved\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8533e18-8b8f-4310-8ca3-8174eb6f53a3",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"instance_type\": \"GPU\",\n  \"gpu_type\": \"<string>\",\n  \"num_gpus\": 1,\n  \"num_cpus\": \"<integer>\",\n  \"storage\": 20,\n  \"name\": \"<string>\",\n  \"duration\": \"hour\",\n  \"template\": \"pytorch\",\n  \"script_id\": \"<string>\",\n  \"http_ports\": \"<string>\",\n  \"fs_id\": \"<string>\",\n  \"region\": \"<string>\",\n  \"is_reserved\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb1580b4-bdd7-4cbb-999d-af2f5bbf0f88",
+          "name": "Get an instance",
+          "request": {
+            "name": "Get an instance",
+            "description": {
+              "content": "Returns details for a single instance. Equivalent to User.get_instance(machine_id) and `jl get <machine_id>`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":machine_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "machine_id",
+                  "description": "(Required) The instance (machine) identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43ca3453-c2a4-4d03-b28a-b7d3f509f50a",
+              "name": "Instance details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"machine_id\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"Paused\",\n  \"instance_type\": \"CPU\",\n  \"gpu_type\": \"string\",\n  \"num_gpus\": 6796,\n  \"num_cpus\": 9700,\n  \"storage\": 3486,\n  \"template\": \"string\",\n  \"region\": \"string\",\n  \"ssh_str\": \"string\",\n  \"url\": \"string\",\n  \"cost_per_hour\": 9913.183470304277\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc4aa6e8-98d1-404b-a693-a5381ff44e52",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9b761b5-bc52-4110-bc48-e0eeef2fe946",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68e76a86-2bbe-4ade-804d-2ebd322c4658",
+          "name": "Rename an instance",
+          "request": {
+            "name": "Rename an instance",
+            "description": {
+              "content": "Renames an instance. Equivalent to `jl rename <machine_id> --name`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":machine_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "machine_id",
+                  "description": "(Required) The instance (machine) identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46d41339-7265-4f82-9753-3e2c8eca074d",
+              "name": "Instance updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"machine_id\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"Paused\",\n  \"instance_type\": \"CPU\",\n  \"gpu_type\": \"string\",\n  \"num_gpus\": 6796,\n  \"num_cpus\": 9700,\n  \"storage\": 3486,\n  \"template\": \"string\",\n  \"region\": \"string\",\n  \"ssh_str\": \"string\",\n  \"url\": \"string\",\n  \"cost_per_hour\": 9913.183470304277\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b74744c-de6b-440b-98fe-3e2253540ce2",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df402c1e-eda9-4bf8-9878-4d2890f8d740",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93782789-c3db-4f53-b0be-0150baec9543",
+          "name": "Destroy an instance",
+          "request": {
+            "name": "Destroy an instance",
+            "description": {
+              "content": "Permanently deletes an instance and all of its data, stopping all billing. Equivalent to instance.destroy() and `jl destroy <machine_id>`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":machine_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "machine_id",
+                  "description": "(Required) The instance (machine) identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c1768f2-06a1-4e45-afa4-370fc1215f59",
+              "name": "Instance destroyed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f47b618-056c-4256-9b72-b0af5a5a6906",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f46ef908-cad1-4709-a0df-fc485ad88a26",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba5f1925-f5f6-45c6-8dbe-035adaf64bd8",
+          "name": "Pause an instance",
+          "request": {
+            "name": "Pause an instance",
+            "description": {
+              "content": "Pauses a running instance, stopping compute billing while persistent storage is retained. Equivalent to instance.pause() and `jl pause <machine_id>`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":machine_id",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "machine_id",
+                  "description": "(Required) The instance (machine) identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "daebba95-2f29-4300-aa6c-37a41e3617c8",
+              "name": "Instance paused.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"machine_id\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"Paused\",\n  \"instance_type\": \"CPU\",\n  \"gpu_type\": \"string\",\n  \"num_gpus\": 6796,\n  \"num_cpus\": 9700,\n  \"storage\": 3486,\n  \"template\": \"string\",\n  \"region\": \"string\",\n  \"ssh_str\": \"string\",\n  \"url\": \"string\",\n  \"cost_per_hour\": 9913.183470304277\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2664c1f2-800e-45ce-b933-7dd4ce835f8e",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01d166d3-57f2-4424-80d4-403b7f9a57b9",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2dd11c06-dbc2-4b53-98ac-76e69165a49e",
+          "name": "Resume an instance",
+          "request": {
+            "name": "Resume an instance",
+            "description": {
+              "content": "Resumes a paused instance, optionally switching GPU type, GPU count, or storage and attaching a filesystem. Equivalent to instance.resume() and `jl resume <machine_id>`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":machine_id",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "machine_id",
+                  "description": "(Required) The instance (machine) identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gpu_type\": \"<string>\",\n  \"num_gpus\": \"<integer>\",\n  \"num_cpus\": \"<integer>\",\n  \"storage\": \"<integer>\",\n  \"fs_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1ba6c38b-7e72-4df4-ab7e-26770a972659",
+              "name": "Instance resumed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gpu_type\": \"<string>\",\n  \"num_gpus\": \"<integer>\",\n  \"num_cpus\": \"<integer>\",\n  \"storage\": \"<integer>\",\n  \"fs_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"machine_id\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"Paused\",\n  \"instance_type\": \"CPU\",\n  \"gpu_type\": \"string\",\n  \"num_gpus\": 6796,\n  \"num_cpus\": 9700,\n  \"storage\": 3486,\n  \"template\": \"string\",\n  \"region\": \"string\",\n  \"ssh_str\": \"string\",\n  \"url\": \"string\",\n  \"cost_per_hour\": 9913.183470304277\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e0e5187-5d51-4ccc-b8b6-379231010893",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gpu_type\": \"<string>\",\n  \"num_gpus\": \"<integer>\",\n  \"num_cpus\": \"<integer>\",\n  \"storage\": \"<integer>\",\n  \"fs_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc5fedce-58e9-4ea4-8c2a-dbd6d0f7a504",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":machine_id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machine_id",
+                      "description": "(Required) The instance (machine) identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"gpu_type\": \"<string>\",\n  \"num_gpus\": \"<integer>\",\n  \"num_cpus\": \"<integer>\",\n  \"storage\": \"<integer>\",\n  \"fs_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.jarvislabs.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2979ba60-cd42-42b7-b13f-ba374d667617",
+    "name": "JarvisLabs Account Instances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST modeling of the JarvisLabs.ai GPU cloud instance-management surface that is wrapped by the jarvislabs Python SDK, the jl CLI, and the legacy jlclient library. JarvisLabs does not publish raw REST endpoint paths in its public documentation; the operations, parameters, GPU types, templates, and lifecycle behavior modeled here are taken directly from the documented SDK methods (Instance.create, instance.pause, instance.resume, instance.destroy, User.get_instances, User.get_instance, User.get_templates, User.get_balance, FileSystem.create/list/delete) and the equivalent jl CLI commands (jl create, list, get, pause, resume, rename, destroy, gpus, templates, status, filesystem). Paths are modeled conservatively under a versioned base and should be treated as illustrative of the documented behavior rather than as officially published routes.\n\nContact Support:\n Name: JarvisLabs Support",
+      "type": "text/plain"
+    }
+  }
+}

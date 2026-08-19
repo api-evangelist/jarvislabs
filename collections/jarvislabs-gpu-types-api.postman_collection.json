@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "e5e23f3f-1432-45f9-bdc2-847b6a8eb26f",
+      "name": "GPU Types",
+      "description": {
+        "content": "GPU type discovery, availability, and pricing.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6aeb4fe6-4d51-4c61-ac3b-335c6452175b",
+          "name": "List GPU types",
+          "request": {
+            "name": "List GPU types",
+            "description": {
+              "content": "Lists available GPU types with real-time availability, region, VRAM, RAM, vCPU count, and per-GPU-hour pricing. Equivalent to `jl gpus`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gpus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4decf7e5-0db1-47ef-b3f3-c620578ec539",
+              "name": "A list of GPU types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gpus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"vram_gb\": 9447,\n    \"ram_gb\": 1182,\n    \"num_cpus\": 5218,\n    \"region\": \"string\",\n    \"available\": false,\n    \"price_per_hour\": 4799.996226618243\n  },\n  {\n    \"name\": \"string\",\n    \"vram_gb\": 2440,\n    \"ram_gb\": 5253,\n    \"num_cpus\": 9957,\n    \"region\": \"string\",\n    \"available\": true,\n    \"price_per_hour\": 1272.1919069478981\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b530681-6c63-48a4-ab6f-a066efc21b3c",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gpus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.jarvislabs.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a3f27193-bdc5-4b9d-a583-5d64a7dc2b08",
+    "name": "JarvisLabs Account GPU Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST modeling of the JarvisLabs.ai GPU cloud instance-management surface that is wrapped by the jarvislabs Python SDK, the jl CLI, and the legacy jlclient library. JarvisLabs does not publish raw REST endpoint paths in its public documentation; the operations, parameters, GPU types, templates, and lifecycle behavior modeled here are taken directly from the documented SDK methods (Instance.create, instance.pause, instance.resume, instance.destroy, User.get_instances, User.get_instance, User.get_templates, User.get_balance, FileSystem.create/list/delete) and the equivalent jl CLI commands (jl create, list, get, pause, resume, rename, destroy, gpus, templates, status, filesystem). Paths are modeled conservatively under a versioned base and should be treated as illustrative of the documented behavior rather than as officially published routes.\n\nContact Support:\n Name: JarvisLabs Support",
+      "type": "text/plain"
+    }
+  }
+}

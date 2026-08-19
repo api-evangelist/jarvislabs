@@ -1,0 +1,520 @@
+{
+  "item": [
+    {
+      "id": "754d9c09-48bd-4c9d-9859-958ffd213a6c",
+      "name": "Filesystems",
+      "description": {
+        "content": "Persistent storage volumes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c650f896-de75-446b-950f-b71b6b37954a",
+          "name": "List filesystems",
+          "request": {
+            "name": "List filesystems",
+            "description": {
+              "content": "Lists persistent storage volumes. Equivalent to FileSystem.list() and `jl filesystem list`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filesystems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9581202-8726-4db3-939e-4d08df4712ff",
+              "name": "A list of filesystems.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesystems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"fs_id\": \"string\",\n    \"name\": \"string\",\n    \"storage\": 8940,\n    \"region\": \"string\"\n  },\n  {\n    \"fs_id\": \"string\",\n    \"name\": \"string\",\n    \"storage\": 1457,\n    \"region\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72929644-3648-4f15-bc77-0ebcb6cc2381",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesystems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07b0b30e-2494-4c3b-bfa8-bbe1575e0dc5",
+          "name": "Create a filesystem",
+          "request": {
+            "name": "Create a filesystem",
+            "description": {
+              "content": "Creates a new persistent storage volume. Equivalent to FileSystem.create() and `jl filesystem create --storage`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filesystems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"storage\": \"<integer>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df522eeb-5533-49db-b020-426138398fbe",
+              "name": "Filesystem created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesystems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storage\": \"<integer>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fs_id\": \"string\",\n  \"name\": \"string\",\n  \"storage\": 7334,\n  \"region\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a84d30d8-d68f-4c2a-9d78-0f6792f28d7c",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesystems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storage\": \"<integer>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "631cba71-8158-4e83-8bf3-4d0a79f8a6ab",
+          "name": "Delete a filesystem",
+          "request": {
+            "name": "Delete a filesystem",
+            "description": {
+              "content": "Deletes a persistent storage volume. Equivalent to FileSystem.delete() and `jl filesystem remove <fs_id>`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filesystems",
+                ":fs_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fs_id",
+                  "description": "(Required) The filesystem identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5872cc3-6302-4cbf-a532-b424d66349fa",
+              "name": "Filesystem deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesystems",
+                    ":fs_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fs_id",
+                      "description": "(Required) The filesystem identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "331e30ff-71d8-4274-ac44-5a0e2f154520",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesystems",
+                    ":fs_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fs_id",
+                      "description": "(Required) The filesystem identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c4c3954-2d1a-4ea9-8056-b967d8045e5e",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesystems",
+                    ":fs_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fs_id",
+                      "description": "(Required) The filesystem identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.jarvislabs.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc77ac2c-ef58-47b0-ae55-8198c6d1521f",
+    "name": "JarvisLabs Account Filesystems API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST modeling of the JarvisLabs.ai GPU cloud instance-management surface that is wrapped by the jarvislabs Python SDK, the jl CLI, and the legacy jlclient library. JarvisLabs does not publish raw REST endpoint paths in its public documentation; the operations, parameters, GPU types, templates, and lifecycle behavior modeled here are taken directly from the documented SDK methods (Instance.create, instance.pause, instance.resume, instance.destroy, User.get_instances, User.get_instance, User.get_templates, User.get_balance, FileSystem.create/list/delete) and the equivalent jl CLI commands (jl create, list, get, pause, resume, rename, destroy, gpus, templates, status, filesystem). Paths are modeled conservatively under a versioned base and should be treated as illustrative of the documented behavior rather than as officially published routes.\n\nContact Support:\n Name: JarvisLabs Support",
+      "type": "text/plain"
+    }
+  }
+}

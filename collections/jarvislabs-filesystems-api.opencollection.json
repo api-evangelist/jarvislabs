@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JarvisLabs Account Filesystems API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Filesystems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List filesystems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jarvislabs.ai/v1/filesystems"
+          },
+          "docs": "Lists persistent storage volumes. Equivalent to FileSystem.list() and `jl filesystem list`."
+        },
+        {
+          "info": {
+            "name": "Create a filesystem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jarvislabs.ai/v1/filesystems",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new persistent storage volume. Equivalent to FileSystem.create() and `jl filesystem create --storage`."
+        },
+        {
+          "info": {
+            "name": "Delete a filesystem",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jarvislabs.ai/v1/filesystems/:fs_id",
+            "params": [
+              {
+                "name": "fs_id",
+                "value": "",
+                "type": "path",
+                "description": "The filesystem identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a persistent storage volume. Equivalent to FileSystem.delete() and `jl filesystem remove <fs_id>`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,173 @@
+{
+  "item": [
+    {
+      "id": "e7d52a65-cc8c-4a2a-97ac-ef7c4272bd30",
+      "name": "Account",
+      "description": {
+        "content": "Account balance and status.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d2a7afa-a818-432c-8046-d9e0a8ad5a34",
+          "name": "Get account balance",
+          "request": {
+            "name": "Get account balance",
+            "description": {
+              "content": "Returns the authenticated account's wallet balance. Equivalent to User.get_balance() and `jl status`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86246a3f-4655-487a-a465-6321f439b2d1",
+              "name": "Account balance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"balance\": 9243.517006228758,\n  \"currency\": \"USD\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dee5690b-8050-4f73-9ef5-27abeaf4b6e9",
+              "name": "Missing or invalid API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.jarvislabs.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8237013e-bbf4-4039-a01e-06aa9d736b58",
+    "name": "JarvisLabs Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST modeling of the JarvisLabs.ai GPU cloud instance-management surface that is wrapped by the jarvislabs Python SDK, the jl CLI, and the legacy jlclient library. JarvisLabs does not publish raw REST endpoint paths in its public documentation; the operations, parameters, GPU types, templates, and lifecycle behavior modeled here are taken directly from the documented SDK methods (Instance.create, instance.pause, instance.resume, instance.destroy, User.get_instances, User.get_instance, User.get_templates, User.get_balance, FileSystem.create/list/delete) and the equivalent jl CLI commands (jl create, list, get, pause, resume, rename, destroy, gpus, templates, status, filesystem). Paths are modeled conservatively under a versioned base and should be treated as illustrative of the documented behavior rather than as officially published routes.\n\nContact Support:\n Name: JarvisLabs Support",
+      "type": "text/plain"
+    }
+  }
+}
