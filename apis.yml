@@ -23,6 +23,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/jarvislabs.png
 tags:
+- Artificial Intelligence
+- GPU
+- Cloud
+- Infrastructure
+- Compute
+tags_raw:
 - AI
 - GPU
 - Cloud
@@ -66,6 +72,8 @@ apis:
   humanURL: https://docs.jarvislabs.ai/api
   baseURL: https://api.jarvislabs.ai/v1
   tags:
+  - Filesystem
+  tags_raw:
   - Filesystems
   properties:
   - type: OpenAPI
