@@ -8,6 +8,18 @@ description: JarvisLabs.ai is a GPU cloud for AI development that lets you launc
   for the full instance lifecycle - create, pause, resume, and destroy - plus GPU type
   discovery, framework templates, persistent filesystems, and managed runs for
   training and inference workloads, billed per minute of compute.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
