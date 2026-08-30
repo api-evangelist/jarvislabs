@@ -193,6 +193,9 @@ apis:
   - type: Documentation
     url: https://jarvislabs.ai/sdk
 common:
+- type: CapabilityMap
+  url: capabilities/jarvislabs-capability-edges.yml
+  name: JarvisLabs Business Capability Map
 - type: AgenticAccess
   url: agentic-access/jarvislabs-agentic-access.yml
 - type: DomainSecurity

@@ -1,0 +1,34 @@
+slug: jarvislabs
+provider: JarvisLabs
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Electrical Components & Equipment
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Instances
+  spec_file: jarvislabs-instances-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: POST /instances createInstance Create an instance ... POST /instances/{machine_id}/pause pauseInstance
+    ... DELETE /instances/{machine_id} destroyInstance Destroy an instance
+  reason: Full lifecycle provisioning, pause/resume and teardown of GPU/CPU cloud compute instances —
+    plainly cloud compute infrastructure management.
+- tag: Filesystems
+  spec_file: jarvislabs-filesystems-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /filesystems createFilesystem Create a filesystem ... DELETE /filesystems/{fs_id} deleteFilesystem
+  reason: Provisioning and deletion of persistent storage volumes in a GPU cloud — cloud storage infrastructure
+    management, a cross-industry IT infrastructure capability.
