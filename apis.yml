@@ -84,7 +84,7 @@ apis:
   humanURL: https://docs.jarvislabs.ai/api
   baseURL: https://api.jarvislabs.ai/v1
   tags:
-  - Filesystem
+  - Filesystems
   tags_raw:
   - Filesystems
   properties:
