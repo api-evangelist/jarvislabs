@@ -1,205 +1,116 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: JarvisLabs
-providerId: jarvislabs
-created: '2026-06-21'
-modified: '2026-06-21'
-reconciled: true
-tags:
-- AI
-- GPU
-- Cloud
-- Infrastructure
-- Compute
-- Plans
-description: >-
-  JarvisLabs.ai uses a transparent pay-as-you-go model billed per minute of
-  compute at published per-GPU-hour rates, with separate per-vCPU-hour rates
-  for CPU VMs and a flat per-GB-per-month rate for persistent storage. Pausing
-  an instance stops compute billing while retaining storage. There are no
-  formal Free / Developer / Enterprise tiers; users recharge a wallet and pay
-  for actual usage. The jarvislabs SDK and jl CLI are free.
-notes: >-
-  Representative on-demand rates as published on the JarvisLabs pricing page;
-  GPU availability and rates vary by region and change over time. Storage is
-  billed at $0.10/GB per month; egress is free within region.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://jarvislabs.ai/pricing
 sources:
 - https://jarvislabs.ai/pricing
-- https://docs.jarvislabs.ai/
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T124425
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+published: true
+note: GPU/CPU cloud pricing billed per minute; discounts listed for spot and commitments (up to 56% spot,
+  9% 1 year). Model APIs token rates on separate page.
+plan_count: 15
+currency: USD
 plans:
-- id: jarvislabs-pay-as-you-go
-  name: Pay-as-you-go
-  type: usage
-  description: >-
-    On-demand GPU and CPU instances billed per minute at published
-    per-hour rates, with no monthly minimum.
-  entries:
-  - label: H100 SXM (80GB)
-    name: gpu_h100_sxm
-    type: usage
-    metric: gpu_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $2.69 per GPU-hour
-    userMultiplied: false
-  - label: RTX Pro 6000 Blackwell (96GB)
-    name: gpu_rtx_pro_6000
-    type: usage
-    metric: gpu_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $1.89 per GPU-hour
-    userMultiplied: false
-  - label: A100 (80GB)
-    name: gpu_a100_80gb
-    type: usage
-    metric: gpu_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $1.49 per GPU-hour
-    userMultiplied: false
-  - label: A100 (40GB)
-    name: gpu_a100_40gb
-    type: usage
-    metric: gpu_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $0.89 per GPU-hour
-    userMultiplied: false
-  - label: L4 (24GB)
-    name: gpu_l4
-    type: usage
-    metric: gpu_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $0.44 per GPU-hour
-    userMultiplied: false
-  - label: A30 (24GB)
-    name: gpu_a30
-    type: usage
-    metric: gpu_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $0.41 per GPU-hour
-    userMultiplied: false
-  - label: Persistent Storage
-    name: storage
-    type: usage
-    metric: gb
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: $0.10 per GB per month
-    userMultiplied: false
-  - label: Egress (within region)
-    name: egress
-    type: usage
-    metric: gb
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: free within region
-    userMultiplied: false
-  elements:
-  - name: GPU Instances
-  - name: CPU VMs
-  - name: Templates
-  - name: Persistent Filesystems
-  - name: Managed Runs
-- id: jarvislabs-cpu-vms
-  name: CPU VMs
-  type: usage
-  description: >-
-    On-demand CPU-only virtual machines billed per minute at published
-    per-hour rates.
-  entries:
-  - label: Basic (2 vCPU / 8GB)
-    name: cpu_basic
-    type: usage
-    metric: vm_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $0.05 per hour
-    userMultiplied: false
-  - label: Standard (4 vCPU / 16GB)
-    name: cpu_standard
-    type: usage
-    metric: vm_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $0.10 per hour
-    userMultiplied: false
-  - label: Large (8 vCPU / 32GB)
-    name: cpu_large
-    type: usage
-    metric: vm_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $0.20 per hour
-    userMultiplied: false
-  - label: XL (16 vCPU / 64GB)
-    name: cpu_xl
-    type: usage
-    metric: vm_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $0.40 per hour
-    userMultiplied: false
-  - label: 2XL (32 vCPU / 128GB)
-    name: cpu_2xl
-    type: usage
-    metric: vm_hours
-    limit: -1
-    timeFrame: hour
-    geo: global
-    unit: 1
-    price: $0.79 per hour
-    userMultiplied: false
-  elements:
-  - name: CPU VMs
-- id: jarvislabs-reserved
-  name: Reserved / Committed
-  type: enterprise
-  description: >-
-    Reserved instances and longer-duration (week / month) commitments for
-    discounted, dedicated GPU capacity. Contact JarvisLabs for volume terms.
-  entries:
-  - label: Reserved Capacity
-    name: reserved
-    type: flat
-    metric: contract
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: contact sales
-    userMultiplied: false
-  elements:
-  - name: Reserved GPU Instances
-  - name: Committed Duration Discounts
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+- name: NVIDIA H200 SXM (on-demand)
+  price_text: $3.99
+  price: 3.99
+  currency: USD
+  period: per-use
+  unit: per GPU per hour
+  included_quota: 141 GB VRAM · 300 GB RAM · 28 vCPU
+- name: NVIDIA H100 SXM (on-demand)
+  price_text: $2.69
+  price: 2.69
+  currency: USD
+  period: per-use
+  unit: per GPU per hour
+  included_quota: 80 GB VRAM · 200 GB RAM · 16 vCPU
+- name: NVIDIA RTX Pro 6000 Blackwell (on-demand)
+  price_text: $1.89
+  price: 1.89
+  currency: USD
+  period: per-use
+  unit: per GPU per hour
+  included_quota: 96 GB VRAM · 160 GB RAM · 28 vCPU
+- name: NVIDIA A100 80GB (on-demand)
+  price_text: $1.49
+  price: 1.49
+  currency: USD
+  period: per-use
+  unit: per GPU per hour
+  included_quota: 80 GB VRAM · 112 GB RAM · 16 vCPU
+- name: NVIDIA A100 40GB (on-demand)
+  price_text: $0.89
+  price: 0.89
+  currency: USD
+  period: per-use
+  unit: per GPU per hour
+  included_quota: 40 GB VRAM · 112 GB RAM · 16 vCPU
+- name: NVIDIA A30 (on-demand)
+  price_text: $0.41
+  price: 0.41
+  currency: USD
+  period: per-use
+  unit: per GPU per hour
+  included_quota: 24 GB VRAM · 112 GB RAM · 16 vCPU
+- name: NVIDIA L4 (on-demand)
+  price_text: $0.44
+  price: 0.44
+  currency: USD
+  period: per-use
+  unit: per GPU per hour
+  included_quota: 24 GB VRAM · 124 GB RAM · 32 vCPU
+- name: CPU VM 2 vCPU · 8 GB
+  price_text: $0.05
+  price: 0.05
+  currency: USD
+  period: per-use
+  unit: /hr
+  included_quota: 2 vCPU, 8 GB RAM
+- name: CPU VM 4 vCPU · 16 GB
+  price_text: $0.10
+  price: 0.1
+  currency: USD
+  period: per-use
+  unit: /hr
+  included_quota: 4 vCPU, 16 GB RAM
+- name: CPU VM 8 vCPU · 32 GB
+  price_text: $0.20
+  price: 0.2
+  currency: USD
+  period: per-use
+  unit: /hr
+  included_quota: 8 vCPU, 32 GB RAM
+- name: CPU VM 16 vCPU · 64 GB
+  price_text: $0.40
+  price: 0.4
+  currency: USD
+  period: per-use
+  unit: /hr
+  included_quota: 16 vCPU, 64 GB RAM
+- name: CPU VM 32 vCPU · 128 GB
+  price_text: $0.79
+  price: 0.79
+  currency: USD
+  period: per-use
+  unit: /hr
+  included_quota: 32 vCPU, 128 GB RAM
+- name: Storage
+  price_text: $0.10 /GB · month
+  price: 0.1
+  currency: USD
+  period: month
+  unit: per GB
+- name: Egress
+  price_text: Free in-region
+  period: none
+- name: Volume/committed pricing
+  price_text: Contact Sales
+  period: none
+rate_limit_statements:
+- Scale to 8 GPUs per instance.

@@ -194,6 +194,8 @@ apis:
   - type: Documentation
     url: https://jarvislabs.ai/sdk
 common:
+- type: Pricing
+  url: https://jarvislabs.ai/pricing
 - type: CapabilityMap
   url: capabilities/jarvislabs-capability-edges.yml
   name: JarvisLabs Business Capability Map
