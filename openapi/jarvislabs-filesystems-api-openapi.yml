@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: JarvisLabs Account Filesystems API
-  description: REST modeling of the JarvisLabs.ai GPU cloud instance-management surface that is wrapped by the jarvislabs Python SDK, the jl CLI, and the legacy jlclient library. JarvisLabs does not publish raw REST endpoint paths in its public documentation; the operations, parameters, GPU types, templates, and lifecycle behavior modeled here are taken directly from the documented SDK methods (Instance.create, instance.pause, instance.resume, instance.destroy, User.get_instances, User.get_instance, User.get_templates, User.get_balance, FileSystem.create/list/delete) and the equivalent jl CLI commands (jl create, list, get, pause, resume, rename, destroy, gpus, templates, status, filesystem). Paths are modeled conservatively under a versioned base and should be treated as illustrative of the documented behavior rather than as officially published routes.
+  title: JarvisLabs Filesystems API
+  description: REST modeling of the JarvisLabs.ai GPU cloud instance-management surface that is wrapped by the jarvislabs Python SDK, the jl CLI, and the legacy jlclient library.
   termsOfService: https://jarvislabs.ai/terms
   contact:
     name: JarvisLabs Support
@@ -77,7 +77,7 @@ paths:
       tags:
       - Filesystems
       summary: Delete a filesystem
-      description: Deletes a persistent storage volume. Equivalent to FileSystem.delete() and `jl filesystem remove <fs_id>`.
+      description: Deletes a persistent storage volume. Equivalent to FileSystem.delete() and `jl filesystem remove `.
       responses:
         '200':
           description: Filesystem deleted.
@@ -90,36 +90,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid API token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    ActionResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message.
-        code:
-          type: string
-          description: Machine-readable error code.
     Filesystem:
       type: object
       properties:
@@ -132,6 +103,35 @@ components:
           description: Storage size in GB.
         region:
           type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+        code:
+          type: string
+          description: Machine-readable error code.
+    ActionResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,11 +1,7 @@
 {
   "provider": "jarvislabs",
   "sources": [
-    "jarvislabs-account-api-openapi.yml",
-    "jarvislabs-filesystems-api-openapi.yml",
-    "jarvislabs-gpu-types-api-openapi.yml",
-    "jarvislabs-instances-api-openapi.yml",
-    "jarvislabs-templates-api-openapi.yml"
+    "_original/jarvislabs-openapi.yml"
   ],
   "outputs": [
     "jarvislabs-account-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "jarvislabs-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "jarvislabs-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jarvislabs-filesystems-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jarvislabs-gpu-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jarvislabs-instances-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jarvislabs-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
