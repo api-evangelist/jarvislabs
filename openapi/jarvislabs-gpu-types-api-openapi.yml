@@ -36,15 +36,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message.
-        code:
-          type: string
-          description: Machine-readable error code.
     GpuType:
       type: object
       properties:
@@ -69,6 +60,15 @@ components:
           type: number
           format: float
           description: Per-GPU-hour price in USD.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+        code:
+          type: string
+          description: Machine-readable error code.
   responses:
     Unauthorized:
       description: Missing or invalid API token.
