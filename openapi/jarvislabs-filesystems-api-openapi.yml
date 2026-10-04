@@ -90,27 +90,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid API token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    ActionResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
     Filesystem:
       type: object
       properties:
@@ -123,6 +103,13 @@ components:
           description: Storage size in GB.
         region:
           type: string
+    ActionResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
     Error:
       type: object
       properties:
@@ -132,6 +119,19 @@ components:
         code:
           type: string
           description: Machine-readable error code.
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

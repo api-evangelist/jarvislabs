@@ -170,14 +170,25 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    MachineId:
-      name: machine_id
-      in: path
-      required: true
-      description: The instance (machine) identifier.
-      schema:
-        type: string
+  responses:
+    BadRequest:
+      description: The request was malformed or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     CreateInstanceRequest:
       type: object
@@ -258,6 +269,26 @@ components:
           type: boolean
         message:
           type: string
+    ResumeInstanceRequest:
+      type: object
+      properties:
+        gpu_type:
+          type: string
+          description: GPU model to switch to on resume.
+        num_gpus:
+          type: integer
+          description: Number of GPUs to resume with (1-8).
+          minimum: 1
+          maximum: 8
+        num_cpus:
+          type: integer
+          description: Number of vCPUs to resume with.
+        storage:
+          type: integer
+          description: Storage in GB to resume with.
+        fs_id:
+          type: string
+          description: Identifier of a filesystem to attach on resume.
     Instance:
       type: object
       properties:
@@ -304,26 +335,6 @@ components:
           type: number
           format: float
           description: Per-hour cost in USD for the active configuration.
-    ResumeInstanceRequest:
-      type: object
-      properties:
-        gpu_type:
-          type: string
-          description: GPU model to switch to on resume.
-        num_gpus:
-          type: integer
-          description: Number of GPUs to resume with (1-8).
-          minimum: 1
-          maximum: 8
-        num_cpus:
-          type: integer
-          description: Number of vCPUs to resume with.
-        storage:
-          type: integer
-          description: Storage in GB to resume with.
-        fs_id:
-          type: string
-          description: Identifier of a filesystem to attach on resume.
     Error:
       type: object
       properties:
@@ -333,25 +344,14 @@ components:
         code:
           type: string
           description: Machine-readable error code.
-  responses:
-    Unauthorized:
-      description: Missing or invalid API token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    MachineId:
+      name: machine_id
+      in: path
+      required: true
+      description: The instance (machine) identifier.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
