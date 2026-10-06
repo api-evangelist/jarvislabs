@@ -56,7 +56,7 @@ tags_raw:
 - Infrastructure
 - Compute
 created: '2026-06-21'
-modified: '2026-06-21'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: jarvislabs:jarvislabs-account-api
@@ -202,6 +202,8 @@ apis:
   - type: Documentation
     url: https://jarvislabs.ai/sdk
 common:
+- url: https://jarvislabs.ai/updates
+  type: Blog
 - type: Pricing
   url: https://jarvislabs.ai/pricing
 - type: CapabilityMap
