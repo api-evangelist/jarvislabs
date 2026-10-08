@@ -118,3 +118,131 @@ plans:
   period: none
 rate_limit_statements:
 - Scale to 8 GPUs per instance.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - subscription
+  units:
+  - compute
+  - data
+  plans:
+  - name: NVIDIA H200 SXM (on-demand)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: NVIDIA H100 SXM (on-demand)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: NVIDIA RTX Pro 6000 Blackwell (on-demand)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: NVIDIA A100 80GB (on-demand)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: NVIDIA A100 40GB (on-demand)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: NVIDIA A30 (on-demand)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: NVIDIA L4 (on-demand)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: CPU VM 2 vCPU · 8 GB
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: CPU VM 4 vCPU · 16 GB
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: CPU VM 8 vCPU · 32 GB
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: CPU VM 16 vCPU · 64 GB
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: CPU VM 32 vCPU · 128 GB
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Storage
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - month
+  - name: Egress
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Volume/committed pricing
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
