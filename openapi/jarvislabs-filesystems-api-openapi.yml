@@ -103,13 +103,6 @@ components:
           description: Storage size in GB.
         region:
           type: string
-    ActionResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
     Error:
       type: object
       properties:
@@ -119,15 +112,22 @@ components:
         code:
           type: string
           description: Machine-readable error code.
+    ActionResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid API token.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API token.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

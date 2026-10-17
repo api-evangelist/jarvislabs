@@ -170,26 +170,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: The request was malformed or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    ActionResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
     CreateInstanceRequest:
       type: object
       required:
@@ -262,13 +250,15 @@ components:
           type: boolean
           description: Whether to launch as a reserved instance.
           default: false
-    ActionResult:
+    Error:
       type: object
       properties:
-        success:
-          type: boolean
-        message:
+        error:
           type: string
+          description: Error message.
+        code:
+          type: string
+          description: Machine-readable error code.
     ResumeInstanceRequest:
       type: object
       properties:
@@ -335,15 +325,6 @@ components:
           type: number
           format: float
           description: Per-hour cost in USD for the active configuration.
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message.
-        code:
-          type: string
-          description: Machine-readable error code.
   parameters:
     MachineId:
       name: machine_id
@@ -352,6 +333,25 @@ components:
       description: The instance (machine) identifier.
       schema:
         type: string
+  responses:
+    BadRequest:
+      description: The request was malformed or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
