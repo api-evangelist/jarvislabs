@@ -1,4 +1,4 @@
-# JarvisLabs (jarvislabs)
+# JarvisLabs
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,139 +66,125 @@
 
 JarvisLabs.ai is a GPU cloud for AI development that lets you launch on-demand GPU and CPU instances (H100, H200, A100, RTX Pro 6000, A6000, A5000, L4, A30) from the terminal. Its Python SDK (jarvislabs / legacy jlclient) and jl CLI wrap an API for the full instance lifecycle - create, pause, resume, and destroy - plus GPU type discovery, framework templates, persistent filesystems, and managed runs for training and inference workloads, billed per minute of compute.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/jarvislabs/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/jarvislabs/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · GPU · Cloud · Infrastructure · Compute
 
-## Tags
+## JarvisLabs on APIs.io
 
-- AI
-- GPU
-- Cloud
-- Infrastructure
-- Compute
+Everything profiled for JarvisLabs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/jarvislabs/](https://apis.io/providers/jarvislabs/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [JarvisLabs Account API](https://apis.io/apis/jarvislabs/jarvislabs-account-api/) — Account balance and status.
+- [JarvisLabs Filesystems API](https://apis.io/apis/jarvislabs/jarvislabs-filesystems-api/) — Persistent storage volumes.
+- [JarvisLabs GPU Types API](https://apis.io/apis/jarvislabs/jarvislabs-gpu-types-api/) — GPU type discovery, availability, and pricing.
+- [JarvisLabs Instances API](https://apis.io/apis/jarvislabs/jarvislabs-instances-api/) — GPU and CPU instance lifecycle.
+- [JarvisLabs Templates API](https://apis.io/apis/jarvislabs/jarvislabs-templates-api/) — Framework templates available for provisioning.
 
-## APIs
+### Published properties
 
-### JarvisLabs Instances API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-On-demand GPU and CPU instance lifecycle - create, list, get, pause, resume, rename, and destroy instances - exposed through the jarvislabs Python SDK and jl CLI, with per-minute billing and persistent storage that survives pause and resume.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.jarvislabs.ai/api](https://docs.jarvislabs.ai/api)
-- **Base URL:** `https://api.jarvislabs.ai/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Jarvislabs Agentic Access](https://apis.io/agentic-access/jarvislabs/jarvislabs-agentic-access/)
 
-- Instances
-- GPU
-- Lifecycle
+#### Collections (6)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.jarvislabs.ai/api)
-- [API Reference](https://docs.jarvislabs.ai/cli)
-- [OpenAPI](openapi/jarvislabs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jarvislabs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jarvislabs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/jarvislabsai/JLClient)
+- [JarvisLabs API](https://apis.io/collections/jarvislabs/open-jarvislabs/)
+- [JarvisLabs Account API](https://apis.io/collections/jarvislabs/open-jarvislabs-account-api/)
+- [JarvisLabs Account Filesystems API](https://apis.io/collections/jarvislabs/open-jarvislabs-filesystems-api/)
+- [JarvisLabs Account GPU Types API](https://apis.io/collections/jarvislabs/open-jarvislabs-gpu-types-api/)
+- [JarvisLabs Account Instances API](https://apis.io/collections/jarvislabs/open-jarvislabs-instances-api/)
+- [JarvisLabs Account Templates API](https://apis.io/collections/jarvislabs/open-jarvislabs-templates-api/)
 
-### JarvisLabs GPU Types API
+#### Security (2)
 
-Lists available GPU types with real-time availability, region, VRAM, RAM, vCPU, and per-GPU-hour pricing (surfaced via the jl gpus command), used to pick hardware before launching an instance.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://jarvislabs.ai/pricing](https://jarvislabs.ai/pricing)
-- **Base URL:** `https://api.jarvislabs.ai/v1`
+- [Jarvislabs Authentication](https://apis.io/security/jarvislabs/jarvislabs-authentication/)
+- [Jarvislabs Domain Security](https://apis.io/security/jarvislabs/jarvislabs-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- GPU Types
-- Availability
-- Catalog
+Published plans, tiers and prices.
 
-#### Properties
+- [Jarvislabs Plans Pricing](https://apis.io/plans/jarvislabs/jarvislabs-plans-pricing/)
 
-- [Documentation](https://docs.jarvislabs.ai/cli)
-- [API Reference](https://docs.jarvislabs.ai/api)
-- [OpenAPI](openapi/jarvislabs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jarvislabs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jarvislabs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### JarvisLabs Templates API
+Published request limits.
 
-Lists available framework templates (PyTorch, TensorFlow, JAX, VM) and persistent filesystems used to provision instances with a ready environment.
+- [Jarvislabs Rate Limits](https://apis.io/rate-limits/jarvislabs/jarvislabs-rate-limits/)
 
-- **Human URL:** [https://docs.jarvislabs.ai/api](https://docs.jarvislabs.ai/api)
-- **Base URL:** `https://api.jarvislabs.ai/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Templates
-- Frameworks
-- Images
+- [Jarvislabs Finops](https://apis.io/finops/jarvislabs/jarvislabs-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.jarvislabs.ai/cli)
-- [API Reference](https://docs.jarvislabs.ai/api)
-- [OpenAPI](openapi/jarvislabs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jarvislabs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jarvislabs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### JarvisLabs Inference & Deploy API
-
-Managed runs that upload code, build a virtual environment, install dependencies, run a training or inference script on a fresh or existing instance, and auto-pause on completion - plus HTTP port exposure for serving Gradio or FastAPI inference apps.
-
-- **Human URL:** [https://jarvislabs.ai/sdk](https://jarvislabs.ai/sdk)
-- **Base URL:** `https://api.jarvislabs.ai/v1`
-
-#### Tags
-
-- Inference
-- Deploy
-- Managed Runs
-
-#### Properties
-
-- [Documentation](https://docs.jarvislabs.ai/)
-- [API Reference](https://docs.jarvislabs.ai/cli)
-- [OpenAPI](openapi/jarvislabs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jarvislabs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jarvislabs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### JarvisLabs SDK & CLI
-
-The jarvislabs Python SDK and jl CLI (and the legacy jlclient library) wrap the JarvisLabs API for instance management, GPU discovery, templates, filesystems, SSH keys, startup scripts, and managed runs, with built-in support for AI coding agents like Claude Code, Cursor, and Codex.
-
-- **Human URL:** [https://jarvislabs.ai/sdk](https://jarvislabs.ai/sdk)
-- **Base URL:** `https://api.jarvislabs.ai/v1`
-
-#### Tags
-
-- SDK
-- CLI
-- Python
-
-#### Properties
-
-- [Documentation](https://jarvislabs.ai/sdk)
-- [API Reference](https://docs.jarvislabs.ai/cli)
-- [GitHub](https://github.com/jarvislabsai/JLClient)
-- [OpenAPI](openapi/jarvislabs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/jarvislabsai)
-- [LinkedIn](https://www.linkedin.com/company/jarvislabs-ai)
 - [Website](https://jarvislabs.ai)
 - [Documentation](https://docs.jarvislabs.ai)
-- [Plans](plans/jarvislabs-plans-pricing.yml)
-- [Rate Limits](rate-limits/jarvislabs-rate-limits.yml)
-- [Fin Ops](finops/jarvislabs-finops.yml)
+- [Pricing](https://jarvislabs.ai/pricing)
+- [Blog](https://jarvislabs.ai/updates)
+- [GitHub](https://github.com/jarvislabsai)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 35.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 54.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 42.1 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/jarvislabs/](https://apis.io/providers/jarvislabs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for JarvisLabs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/jarvislabs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
